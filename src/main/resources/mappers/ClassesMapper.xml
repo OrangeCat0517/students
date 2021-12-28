@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.students.mapper.ClassesMapper">
+    <insert id="save" parameterType="com.example.students.domain.Classes">
+        insert into classes(c_number)
+        values (concat('CL', year(now()), month(now()), (select to_num(substr(c_number,9,11))+1 from classes where c_id=max(c_id))))
+    </insert>
+</mapper>

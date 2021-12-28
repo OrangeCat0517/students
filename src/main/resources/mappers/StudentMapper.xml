@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.students.mapper.StudentMapper">
+    <resultMap id="studentResultMap" type="com.example.students.domain.Student">
+        <id column="s_id" property="id"/>
+        <result column="s_number" property="number"/>
+        <result column="s_name" property="name"/>
+        <result column="s_age" property="age"/>
+        <result column="s_sex" property="sex"/>
+        <result column="s_birthday" property="birthday"/>
+        <result column="s_address" property="address"/>
+        <result column="s_tel" property="tel"/>
+        <result column="s_status" property="status"/>
+        <result column="s_create_user" property="createUser"/>
+        <result column="s_create_time" property="createTime"/>
+        <result column="s_operator_user" property="operatorUser"/>
+        <result column="s_operator_time" property="operatorTime"/>
+        <association property="classes" column="c_id" select="">
+
+        </association>
+    </resultMap>
+</mapper>
