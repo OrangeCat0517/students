@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.students.mapper.ScoreMapper">
+    <resultMap id="classesResultMap" type="com.example.students.domain.Score">
+        <id column="sc_id" property="id"/>
+        <result column="sc_chinese" property="chinese" />
+        <result column="sc_math" property="math" />
+        <result column="sc_english" property="english" />
+        <result column="sc_status" property="status"/>
+        <result column="sc_create_user" property="createUser"/>
+        <result column="sc_create_time" property="createTime"/>
+        <result column="sc_operator_user" property="operatorUser"/>
+        <result column="sc_operator_time" property="operatorTime"/>
+        <association property="student" column="s_id" javaType="com.example.students.domain.Student" >
+            <id column="s_id" property="id"/>
+            <result column="s_number" property="number"/>
+            <result column="s_name" property="name"/>
+            <result column="s_age" property="age"/>
+            <result column="s_sex" property="sex"/>
+            <result column="s_birthday" property="birthday"/>
+            <result column="s_address" property="address"/>
+            <result column="s_tel" property="tel"/>
+            <result column="s_status" property="status"/>
+            <result column="s_create_user" property="createUser"/>
+            <result column="s_create_time" property="createTime"/>
+            <result column="s_operator_user" property="operatorUser"/>
+            <result column="s_operator_time" property="operatorTime"/>
+        </association>
+    </resultMap>
+
+    <select id="findByStudentId" resultMap="classesResultMap">
+        select * from scores where s_id = #{studentId}
+    </select>
+</mapper>

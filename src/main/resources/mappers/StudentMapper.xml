@@ -17,8 +17,26 @@
         <result column="s_create_time" property="createTime"/>
         <result column="s_operator_user" property="operatorUser"/>
         <result column="s_operator_time" property="operatorTime"/>
-        <association property="classes" column="c_id" select="">
-
+        <association property="classes" column="c_id" javaType="com.example.students.domain.Classes">
+            <id column="c_id" property="id"/>
+            <result column="c_number" property="number" />
+            <result column="c_name" property="name" />
+            <result column="c_status" property="status"/>
+            <result column="c_create_user" property="createUser"/>
+            <result column="c_create_time" property="createTime"/>
+            <result column="c_operator_user" property="operatorUser"/>
+            <result column="c_operator_time" property="operatorTime"/>
         </association>
     </resultMap>
+
+    <select id="findByNumberAndName" resultMap="studentResultMap">
+        select * from students where s_number=#{number} and s_name=#{name}
+    </select>
+    <select id="findByClassName" resultMap="studentResultMap">
+        select * from students where c_id = (select c_id from classes where c_name = #{className})
+    </select>
+    <select id="findByClassId" resultMap="studentResultMap">
+        select * from students where c_id = #{classId}
+    </select>
+
 </mapper>

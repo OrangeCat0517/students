@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Param;
 public interface ClassesMapper {
     int save(Classes classes);
     Classes findById(Integer id);
-    Integer findIdBy(@Param("number") String number, String name);
+    Integer findIdByNumberAndName(@Param("number") String number, String name);
 }

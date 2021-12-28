@@ -8,7 +8,6 @@ import com.example.students.mapper.ClassesMapper;
 import com.example.students.mapper.ScoreMapper;
 import com.example.students.mapper.StudentMapper;
 import com.example.students.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,12 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class StudentServiceImpl implements StudentService {
 
-    @Autowired
-    private StudentMapper studentMapper;
-    @Autowired
-    private ClassesMapper classesMapper;
-    @Autowired
-    private ScoreMapper scoreMapper;
+    private final StudentMapper studentMapper;
+    private final ClassesMapper classesMapper;
+    private final ScoreMapper scoreMapper;
+
+    public StudentServiceImpl(StudentMapper studentMapper, ClassesMapper classesMapper, ScoreMapper scoreMapper) {
+        this.studentMapper = studentMapper;
+        this.classesMapper = classesMapper;
+        this.scoreMapper = scoreMapper;
+    }
 
     @Override
     public StudentDTO searchByStudentNumberAndName(String studentName, String studentNumber) {

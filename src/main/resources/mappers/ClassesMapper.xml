@@ -3,8 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.students.mapper.ClassesMapper">
+    <resultMap id="classesResultMap" type="com.example.students.domain.Classes">
+        <id column="c_id" property="id"/>
+        <result column="c_number" property="number" />
+        <result column="c_name" property="name" />
+        <result column="c_status" property="status"/>
+        <result column="c_create_user" property="createUser"/>
+        <result column="c_create_time" property="createTime"/>
+        <result column="c_operator_user" property="operatorUser"/>
+        <result column="c_operator_time" property="operatorTime"/>
+    </resultMap>
+
     <insert id="save" parameterType="com.example.students.domain.Classes">
-        insert into classes(c_number)
-        values (concat('CL', year(now()), month(now()), (select to_num(substr(c_number,9,11))+1 from classes where c_id=max(c_id))))
+        insert into classes(c_number, c_name, c_status, c_create_user, c_create_time, c_operator_user, c_operator_time)
+        values (#{number}, #{name}, #{status}, #{createUser}, #{createTime}, #{operatorUser}, #{operatorTime})
     </insert>
+    <select id="findById" resultMap="classesResultMap">
+        select * from classes where c_id = #{id}
+    </select>
+    <select id="findIdByNumberAndName" resultMap="classesResultMap">
+        select * from classes where c_number=#{number} and c_name =#{name}
+    </select>
+
 </mapper>

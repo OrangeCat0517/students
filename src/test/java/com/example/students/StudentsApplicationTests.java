@@ -13,7 +13,7 @@ class StudentsApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println(studentService.searchByStudentNumberAndName("", ""));
+        System.out.println(studentService.searchByStudentNumberAndName("Tom", "SN20211200001"));
     }
 
 }
