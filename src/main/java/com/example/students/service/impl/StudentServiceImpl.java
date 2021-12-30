@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class StudentServiceImpl implements StudentService {
-
     private final StudentMapper studentMapper;
     private final ClassesMapper classesMapper;
     private final ScoreMapper scoreMapper;
@@ -48,5 +47,11 @@ public class StudentServiceImpl implements StudentService {
         studentDTO.setAvgScore(studentDTO.getAvgScore());
 
         return studentDTO;
+    }
+
+    @Override
+    public Classes save(Classes classes) {
+        classesMapper.save(classes);
+        return classes;
     }
 }

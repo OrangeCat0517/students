@@ -33,4 +33,22 @@
     <select id="findByStudentId" resultMap="classesResultMap">
         select * from scores where s_id = #{studentId}
     </select>
+
+    <select id="findAvgChineseByClassesId" resultType="double" parameterType="java.lang.Integer">
+        select avg(sc_chinese) from scores
+        where s_id in (select s_id from students where c_id = #{classesId})
+    </select>
+    <select id="findAvgMathByClassesId" resultType="double" parameterType="java.lang.Integer">
+        select avg(sc_math) from scores
+        where s_id in (select s_id from students where c_id = #{classesId})
+    </select>
+    <select id="findAvgEnglishByClassesId" resultType="double" parameterType="java.lang.Integer">
+        select avg(sc_english) from scores
+        where s_id in (select s_id from students where c_id = #{classesId})
+    </select>
+    <select id="findAvgTotalByClassesId" resultType="double" parameterType="java.lang.Integer">
+        select (sum(sc_chinese)+sum(sc_english)+sum(sc_math)) / (select count(s_id) from students where c_id = #{classesId})  from scores
+        where s_id in (select s_id from students where c_id = #{classesId});
+    </select>
+
 </mapper>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+
+</head>
+<body>
+<form id="students">
+    student Number<input id="studentNumber" name="studentNumber"/><br>
+    student Name<input id="studentName" name="studentName"/><br>
+    <input id="btn_submit" type="button"/>
+</form>
+<table border="1px">
+    <tr>
+        <td>student Number</td>
+        <td>student Name</td>
+        <td>student Address</td>
+        <td>student classes Number</td>
+        <td>student classes Name</td>
+        <td>student chinese</td>
+        <td>student math</td>
+        <td>student english</td>
+        <td>totalScore</td>
+        <td>avg Score</td>
+    </tr>
+    <tr>
+        <td id="tdStudentNumber"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</div>
+</body>
+<script>
+    let studentNumber = document.getElementById('studentNumber').value;
+    let studentName = $('#studentName').value();
+    $(document).ready(function () {
+        $("#btn_submit").click(function () {
+            student = $.ajax({
+                url: "http://localhost:8080/students?studentNumber=" + studentNumber + "&studentName=" + studentName,
+                async: false
+            });
+            $("#tdStudentNumber").html(student.responseText.studentNumber);
+        });
+    });
+
+</script>
+</html>

@@ -63,3 +63,6 @@ insert into scores(sc_chinese, sc_math, sc_english, s_id, sc_status, sc_create_u
 values(23, 32, 88, 2, 1, 'tom', '2021-01-01 10:12:59', 'tom', '2021-01-01 10:12:59');
 insert into scores(sc_chinese, sc_math, sc_english, s_id, sc_status, sc_create_user, sc_create_time, sc_operator_user, sc_operator_time)
 values(100, 100, 65, 3, 1, 'tom', '2021-01-01 10:12:59', 'tom', '2021-01-01 10:12:59');
+
+select count(s_id) from students where c_id = 1;
+

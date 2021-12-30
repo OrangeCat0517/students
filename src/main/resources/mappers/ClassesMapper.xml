@@ -21,8 +21,14 @@
     <select id="findById" resultMap="classesResultMap">
         select * from classes where c_id = #{id}
     </select>
-    <select id="findIdByNumberAndName" resultMap="classesResultMap">
-        select * from classes where c_number=#{number} and c_name =#{name}
+    <select id="findIdByNumberAndName" resultType="java.lang.Integer">
+        select c_id from classes where c_number=#{number} and c_name =#{name}
+    </select>
+    <select id="findNumberByMaxId" resultType="java.lang.String">
+        select c_number from classes where c_id = (select max(c_id) from classes)
+    </select>
+    <select id="findAll" resultMap="classesResultMap">
+        select * from classes
     </select>
 
 </mapper>
