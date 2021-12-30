@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Students</title>
-
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <form id="students">
     student Number<input id="studentNumber" name="studentNumber"/><br>
     student Name<input id="studentName" name="studentName"/><br>
-    <input id="btn_submit" type="button"/>
+    <input id="btn_submit" type="button" value="查询学生基本信息和成绩"/>
 </form>
 <table border="1px">
     <tr>
@@ -40,15 +40,16 @@
 </div>
 </body>
 <script>
-    let studentNumber = document.getElementById('studentNumber').value;
-    let studentName = $('#studentName').value();
     $(document).ready(function () {
         $("#btn_submit").click(function () {
-            student = $.ajax({
-                url: "http://localhost:8080/students?studentNumber=" + studentNumber + "&studentName=" + studentName,
-                async: false
+            let studentNumber = $('#studentNumber').val();
+            let studentName = $('#studentName').val();
+            let url = 'http://localhost:8080/students?studentNumber=' + studentNumber + '&studentName=' + studentName;
+            let result = $.ajax({
+                url: url, async: false
             });
-            $("#tdStudentNumber").html(student.responseText.studentNumber);
+            let student = JSON.parse(result.responseText);
+            $("#tdStudentNumber").html(student.studentNumber);
         });
     });
 
